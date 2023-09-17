@@ -1,0 +1,252 @@
+paths:
+  /doctor:
+    post:
+      tags:
+        - admin/doctor
+      summary: Create a new doctor
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: example@gmail.com
+                username:
+                  type: string
+                  example: abc
+                password:
+                  type: string
+                  example: 123456789
+                passwordConfirmation:
+                  type: string
+                  example: 123456789
+                gender:
+                  type: number
+                  example: 0 || 1
+                clinic:
+                  type: string
+                rank:
+                  type: string
+                technique:
+                  type: string
+                address:
+                  type: string
+                  description: optional
+                phoneNumber:
+                  type: string
+                  description: optional
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - doctor
+      summary: get list of doctors
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit the number of items per page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: object
+                    properties:
+                      totalPages:
+                        type: number
+                        example: 1
+                      total:
+                        type: number
+                        example: 10
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Doctor'
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - doctor
+      summary: edit doctor information
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: example@gmail.com
+                username:
+                  type: string
+                  example: abc
+                gender:
+                  type: number
+                  example: 0 || 1
+                address:
+                  type: string
+                  description: optional
+                phoneNumber:
+                  type: string
+                  description: optional
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /doctor/{id}:
+    delete:
+      tags:
+        - admin/doctor
+      summary: delete a doctor
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the doctor
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - doctor
+      summary: get doctor
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the doctor
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    $ref: '#/components/schemas/Doctor'
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /doctor/detail:
+    get:
+      tags:
+        - doctor
+      summary: get detail doctor
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    $ref: '#/components/schemas/Doctor'
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

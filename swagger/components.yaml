@@ -1,0 +1,142 @@
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        result:
+          type: boolean
+          example: false
+        message:
+          type: string
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        roleName:
+          type: string
+          example: admin
+        key:
+          type: string
+          example: R1
+    Doctor:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        email:
+          type: string
+          example: example@example.com
+        username:
+          type: string
+          example: abc
+        gender:
+          type: number
+          example: 0
+        phoneNumber:
+          type: string
+          example: 123333333
+        image:
+          type: string
+          example: abc
+        rank:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: sdnfduf
+            description:
+              type: string
+              example: abc
+        clinic:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: sdnfduf
+            description:
+              type: string
+              example: abc
+            address:
+              type: string
+              example: abc
+        technique:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: sdnfduf
+            description:
+              type: string
+              example: abc
+    Clinic:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+        address:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+    ClinicDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+        address:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        ranks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rank'
+        techniques:
+          type: array
+          items:
+            $ref: '#/components/schemas/Technique'
+        doctors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Clinic'
+    Rank:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+        description:
+          type: string
+    Technique:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+        description:
+          type: string

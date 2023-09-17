@@ -1,0 +1,71 @@
+paths:
+  /time-slot:
+    post:
+      tags:
+        - admin/time-slot
+      summary: create a new time slot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timeSlot:
+                  type: string
+                  example: 08:00 - 09:00
+                key:
+                  type: string
+                  example: T1
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /time-slot/{id}:
+    delete:
+      tags:
+        - admin/time-slot
+      summary: delete time slot
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the time slot
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

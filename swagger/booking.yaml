@@ -1,0 +1,150 @@
+paths:
+  /booking:
+    post:
+      tags:
+        - bookings
+      summary: user booking
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patientId:
+                  type: number
+                doctorId:
+                  type: number
+                timeSlotId:
+                  type: number
+                date:
+                  type: string
+                  example: '2015-07-04'
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - bookings
+      summary: The doctor takes all bookings for the day
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: doctorId
+          in: query
+          description: ID of doctor
+          required: true
+          schema:
+            type: integer
+        - name: date
+          in: query
+          description: date
+          required: true
+          schema:
+            type: string
+            example: '2015-07-04'
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: array
+                    example: []
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /booking/{id}:
+    put:
+      tags:
+        - bookings
+      summary: cancel booking
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of booking
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - bookings
+      summary: complete booking
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of booking
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

@@ -1,0 +1,16 @@
+tags:
+  - name: auth
+  - name: doctor
+  - name: user
+  - name: bookings
+  - name: schedule
+  - name: history
+  - name: clinic
+  - name: technique
+  - name: rank
+  - name: admin/user
+  - name: admin/doctor
+  - name: admin/roles
+  - name: admin/clinic
+  - name: admin/technique
+  - name: admin/time-slot

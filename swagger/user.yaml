@@ -1,0 +1,218 @@
+paths:
+  /user:
+    get:
+      tags:
+        - admin/user
+      summary: get list of users
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit the number of items per page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: object
+                    properties:
+                      totalPages:
+                        type: number
+                        example: 1
+                      total:
+                        type: number
+                        example: 10
+                      data:
+                        type: array
+                        example: []
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - user
+      summary: edit information user
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: example@gmail.com
+                username:
+                  type: string
+                  example: abc
+                gender:
+                  type: number
+                  example: 0 || 1
+                address:
+                  type: string
+                  description: optional
+                phoneNumber:
+                  type: string
+                  description: optional
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/detail:
+    get:
+      tags:
+        - user
+      summary: get user detail
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: object
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/remove-account:
+    delete:
+      tags:
+        - user
+      summary: remove account
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}:
+    delete:
+      tags:
+        - admin/user
+      summary: delete user
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the user
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - user
+      summary: get user
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the user
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: object
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

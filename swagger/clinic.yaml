@@ -1,0 +1,209 @@
+paths:
+  /clinic:
+    post:
+      tags:
+        - admin/clinic
+      summary: Create a new clinic
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: string
+                description:
+                  type: string
+                  description: optional
+                image:
+                  type: string
+                  description: optional
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - clinic
+      summary: get list of clinics
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit the number of items per page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    type: object
+                    properties:
+                      totalPages:
+                        type: number
+                        example: 1
+                      total:
+                        type: number
+                        example: 10
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Clinic'
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /clinic/{id}:
+    delete:
+      tags:
+        - admin/clinic
+      summary: delete clinic
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the clinic
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - clinic
+      summary: get clinic
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the clinic
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+                  data:
+                    $ref: '#/components/schemas/ClinicDetail'
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - clinic
+      summary: edit clinic
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the clinic
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: string
+                description:
+                  type: string
+                  description: optional
+                image:
+                  type: string
+                  description: optional
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                    example: Successful !!!
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

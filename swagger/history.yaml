@@ -1,0 +1,68 @@
+paths:
+  /history/{patientId}:
+    get:
+      tags:
+        - history
+      summary: get list history
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: patientId
+          in: path
+          description: ID of user
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    example: []
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /history/{id}:
+    delete:
+      tags:
+        - history
+      summary: delete history
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of history
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
+        '4xx':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
